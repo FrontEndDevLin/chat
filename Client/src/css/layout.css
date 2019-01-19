@@ -1,0 +1,284 @@
+.globalWin {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.navbar {
+    height: 100%;
+    background: #444;
+    width: 5rem;
+    position: relative;
+}
+
+.avatar__content {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.avatar {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 3px;
+}
+
+.functab__content li {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.functab__content li.functab--active {
+    background: #666;
+}
+
+.functab__content li img {
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.more__content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1.4rem 0;
+}
+
+.more__content img {
+    width: 2.2rem;
+    height: 2.2rem;
+}
+
+.leftlist {
+    width: 22rem;
+    background: #d8d8d8;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.chatitem___content {
+    padding: 1.3rem;
+    width: 100%;
+}
+
+.chatitem___content--active {
+    background: #bbb;
+}
+
+.chatitem___avatar img {
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 2px;
+    margin-right: 1.3rem;
+}
+
+.chatitem___detail span {
+    font-size: 1.2rem;
+    color: #1e1e1e;
+}
+
+.chatitem___detail p {
+    font-size: 1.1rem;
+    color: #818181;
+    margin-top: .3rem;
+}
+
+.chatitem__time span {
+    color: #919191;
+}
+
+.addreslist__item {
+    padding-top: 2rem;
+    border-bottom: #dbdbdb 1px solid;
+}
+
+.addreslist__item h3 {
+    color: #818181;
+    font-weight: 100;
+    padding-left: 1.1rem;
+}
+
+.addreslist .friend__content {
+    padding: 1.1rem;
+}
+
+.friend__content--active {
+    background: #ccc;
+}
+
+.addreslist .friend__name {
+    height: 100%;
+    display: inline-block;
+    font-size: 1.3rem;
+}
+
+.addreslist .friend__avatar {
+    display: inline-block;
+}
+
+.addreslist .friend__avatar img{
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 2px;
+    margin-right: 1.1rem;
+}
+
+.chatwin__outer {
+    margin-left: 27rem;
+    height: 100%;
+}
+
+.chatwin {
+    height: 100%;
+    float: left;
+    width: 100%;
+    background: #f0f0f0;
+    position: relative;
+}
+
+.chatwin__top {
+    border-bottom: 1px solid #dbdbdb;
+    -webkit-app-region: drag;
+    height: 5.4rem;
+    position: relative;
+    z-index: 999;
+}
+
+.topbar .topbar__ctrl {
+    -webkit-app-region: no-drag;
+}
+
+.topbar .topbar__ctrl li {
+    float: left;
+    padding: .4rem 1rem;
+    cursor: pointer;
+}
+
+.topbar .topbar__ctrl li:hover {
+    background: #ccc;
+}
+
+.topbar .topbar__ctrl li.close:hover {
+    background: #E74C3C;
+}
+
+.topbar .topbar__ctrl li img {
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.chatwin--target {
+    padding-left: 2.8rem;
+}
+
+.chatwin--target span {
+    font-size: 1.5rem;
+    -webkit-app-region: no-drag;
+}
+
+.chatwin__main--outer {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    padding: 5.4rem 2rem 14.5rem 2rem;
+}
+
+.chatwin__main {
+    width: 100%;
+    height: 100%;
+}
+
+.chatwin__main .msgitem {
+    padding: .8rem;
+}
+
+.chatwin__main .msgitem.left .msgitem__avatar, .chatwin__main .msgitem.left .content__outer {
+    float: left;
+}
+
+.chatwin__main .msgitem.right .msgitem__avatar, .chatwin__main .msgitem.right .content__outer {
+    float: right;
+}
+
+.msgitem.right .msgitem__content {
+    /* background: TODO: */
+}
+
+.msgitem img {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 3px;
+}
+.content__outer {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    top: -0.3rem;
+    margin: 0 .8rem;
+    max-width: 55%;
+}
+
+.content__outer .content__user {
+    font-size: 1.2rem;
+    color: #666;
+    display: inline-block;
+    margin-bottom: .4rem;
+}
+
+.content__outer .msgitem__content {
+    font-size: 1.4rem;
+    padding: .8rem;
+    background: #fff;
+    border-radius: 3px;
+}
+
+.chatwin__editor {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 14.5rem;
+    border-top: 1px solid #dbdbdb;
+    background: #f5f5f5;
+}
+
+.editor__tool {
+    padding: 0 1.4rem;
+}
+
+.editor__tool li {
+    float: left;
+    padding: .6rem;
+    cursor: pointer;
+}
+
+.editor__tool li img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.editor__main {
+    position: relative;
+}
+
+.editor__input {
+    height: 11rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: none;
+    padding: .4rem 2rem;
+    font-size: 1.6rem;
+}
+
+.editor__main .sendbtn {
+    position: absolute;
+    right: 2rem;
+    bottom: 1rem;
+    border: 1px solid #d8d8d8;
+    background: #eee;
+    outline: none;
+    cursor: pointer;
+    padding: .3rem 1.2rem;
+    font-family: 'Microsoft Yahei';
+}

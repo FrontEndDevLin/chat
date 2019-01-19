@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <title>Venssage</title>
+</head>
+<body>
+    <div class="globalWin clear">
+        <div class="navbar lf">
+            <div class="avatar__content">
+                <img class="avatar" src="images/header.jpg">
+            </div>
+            <ul class="functab__content">
+                <li class="functab--active">
+                    <img src="images/chat.png" title="聊天">
+                </li>
+                <li>
+                    <img src="images/group.png" title="通讯录">
+                </li>
+            </ul>
+            <div class="more__content">
+                <img src="images/more.png" title="更多">
+            </div>
+        </div>
+        <div class="leftlist lf"  onselectstart="return false;">
+            <!-- 对应聊天列表 -->
+            <div class="chatlist">
+                <ul>
+                    <li class="chatitem___content chatitem___content--active clear">
+                        <div class="chatitem___avatar lf">
+                            <img src="images/header.jpg">
+                        </div>
+                        <div class="chatitem___detail lf">
+                            <span>江江</span>
+                            <p>聊天语句</p>
+                        </div>
+                        <div class="chatitem__time rt">
+                            <span>23:26</span>
+                        </div>
+                    </li>
+                    <li class="chatitem___content clear">
+                        <div class="chatitem___avatar lf">
+                            <img src="images/header.jpg">
+                        </div>
+                        <div class="chatitem___detail lf">
+                            <span>江江</span>
+                            <p>聊天语句</p>
+                        </div>
+                        <div class="chatitem__time rt">
+                            <span>23:26</span>
+                        </div>
+                    </li>
+                    <li class="chatitem___content clear">
+                        <div class="chatitem___avatar lf">
+                            <img src="images/header.jpg">
+                        </div>
+                        <div class="chatitem___detail lf">
+                            <span>江江</span>
+                            <p>聊天语句</p>
+                        </div>
+                        <div class="chatitem__time rt">
+                            <span>23:26</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 对应通讯录 -->
+            <div class="addreslist" style="display: none">
+                <!-- 群聊 -->
+                <div class="addreslist__item">
+                    <h3>群聊</h3>
+                    <ul>
+                        <li class="friend__content friend__content--active clear">
+                            <div class="friend__avatar">
+                                <img src="images/header.jpg">
+                            </div>
+                            <div class="friend__name">
+                                <span>小弟弟</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 好友 -->
+                <div class="addreslist__item">
+                    <h3>好友</h3>
+                    <ul>
+                        <li class="friend__content clear">
+                            <div class="friend__avatar">
+                                <img src="images/header.jpg">
+                            </div>
+                            <div class="friend__name">
+                                <span>江江</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="chatwin__outer">
+            <div class="chatwin">
+                <div class="chatwin__main--outer">
+                    <div class="chatwin__main clear">
+                        <div class="msgitem clear left">
+                            <img src="images/header.jpg" class="msgitem__avatar">
+                            <div class="content__outer">
+                                <span class="content__user">江江</span>
+                                <div class="msgitem__content">聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句</div>
+                            </div>
+                        </div>
+                        <div class="msgitem clear right">
+                            <img src="images/header.jpg" class="msgitem__avatar">
+                            <div class="content__outer">
+                                <div class="msgitem__content">聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chatwin__top">
+                    <div class="topbar clear">
+                        <ul class="topbar__ctrl rt clear">
+                            <li title="最小化" id="min"><img src="images/min.png"></li>
+                            <li title="最大化" id="max" data-status="false"><img src="images/max.png"></li>
+                            <li title="关闭" id="close" class="close"><img src="images/close.png"></li>
+                        </ul>
+                    </div>
+                    <div class="chatwin--target">
+                        <span>江江</span>
+                    </div>
+                </div>
+                <div class="chatwin__editor">
+                    <div class="editor__tool">
+                        <ul class="clear">
+                            <li title="表情">
+                                <img src="images/smile.png">
+                            </li>
+                            <li title="发送文件">
+                                <img src="images/folder.png">
+                            </li>
+                            <li title="截图">
+                                <img src="images/scissors.png">
+                            </li>
+                            <li title="消息记录">
+                                <img src="images/history.png">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="editor__main">
+                        <div contenteditable="true" class="editor__input"></div>
+                        <button class="sendbtn">发送</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="js/jquery-1.11.3.js"></script> -->
+    <script src="js/Native_Mark.js"></script>
+    <script src="js/IpcEntry.js"></script>
+    <script src="js/import.js"></script>
+</body>
+</html>

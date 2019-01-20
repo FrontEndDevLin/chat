@@ -14,7 +14,7 @@ function createWindow() {
     // 创建浏览器窗口。
     // Global.mainWin = new BrowserWindow({ width: 900, height: 620 })
     // Global.mainWin = new BrowserWindow({ width: 900, height: 620, frame: false });
-    Global.loginWin = new BrowserWindow({ width: 460, height: 400 })
+    Global.loginWin = new BrowserWindow({ width: 460, height: 400, frame: false })
     // mainWin = Global.mainWin;
     loginWin = Global.loginWin;
 

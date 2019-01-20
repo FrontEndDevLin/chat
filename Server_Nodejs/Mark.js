@@ -10,3 +10,5 @@ let Mark = {
         CONNECTION_REQUEST: 101
     }
 }
+
+module.exports = Mark;

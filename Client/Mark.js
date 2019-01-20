@@ -17,7 +17,7 @@ const N_Mark = {
     },
 
     FILE: {
-        SHOW_CONT: 201
+        GET_HOST: 201
     }
 }
 

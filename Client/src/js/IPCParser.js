@@ -1,6 +1,6 @@
 /**
  * create by Lin_HR at 2019/1/19
- * 底层返回的数据和事件处理
+ * 底层返回的数据和事件处理 少用
  */
 
 function IPCParser(){
@@ -35,7 +35,6 @@ function IPCParser(){
         }
         switch (protocol_sub) {
             case N_Mark.WINDOW.MAX: {
-                // alert(data);
             } break;
         
             default:

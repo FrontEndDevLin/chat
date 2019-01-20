@@ -5,6 +5,8 @@
 
 const ipcMain = require('electron').ipcMain;
 const N_Mark = require('./Mark');
+const ini = require("ini");
+const fs = require("fs");
 let Gb = require("./Global");
 
 function IPC(){
@@ -13,10 +15,15 @@ function IPC(){
         ipcMain.on("NT", (event, protocol_main, protocol_sub, data)=>{
             ipcEvent = event;
             OnParse(protocol_main, protocol_sub, data)
-        })
+        });
+
+        ipcMain.on("NTSYNC", (event, protocol_main, protocol_sub, data)=>{
+            ipcEvent = event;
+            OnParse(protocol_main, protocol_sub, data)
+        });
     }
 
-    // 回传给前端
+    // 回传给前端, 异步
     function FESend(protocol_main, protocol_sub, data){
         if(!ipcEvent) return;
         if(data){
@@ -27,6 +34,12 @@ function IPC(){
             }
         }
         ipcEvent.sender.send("FE", protocol_main, protocol_sub, data);
+    }
+
+    // 同步
+    function FESendSync(data){
+        if(!ipcEvent || !data) return;
+        ipcEvent.returnValue = data;
     }
 
     function OnParse(protocol_main, protocol_sub, data){
@@ -79,8 +92,13 @@ function IPC(){
             }
         }
         switch (protocol_sub) {
-            case N_Mark.FILE.SHOW_CONT: {
-                // TODO:
+            case N_Mark.FILE.GET_HOST: {
+                var info = ini.parse(fs.readFileSync("./sys/config.ini", 'UTF-8'));
+                var ptc = info["host"]["main_host_ptc"],
+                    host = info["host"]["main_host_addr"],
+                    port = info["host"]["main_host_port"];
+                var serverHost = `${ptc}://${host}:${port}`;
+                FESendSync(serverHost);
             } break;
             default:
                 break;

@@ -1,17 +1,17 @@
 var N_Mark = {
     PTC_MAIN: {
-        WINDOW: 001,
-        FILE: 002 
+        WINDOW:     001,
+        FILE:       002 
     },
 
     WINDOW: {
-        MIN: 101,
-        MAX: 102,
-        CLOSE: 103,
-        REDU: 104
+        MIN:        101,
+        MAX:        102,
+        CLOSE:      103,
+        REDU:       104
     },
 
     FILE: {
-        SHOW_CONT: 201
+        GET_HOST:   201
     }
 }

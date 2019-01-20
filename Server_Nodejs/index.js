@@ -10,15 +10,13 @@ let httpServ = HTTP.createServer().listen(PORT, ()=>{
 let io = SIO(httpServ);
 
 io.on("connection", (socketSer)=>{
-    socketSer.on("Z", (data)=>{
+    socketSer.on(Mark.SEND, (data)=>{
         if(!data) return;
         try {
             data = JSON.parse(data);
         } catch (error) {
-            let oRsp = {MOD: MARK.MODULE.FAIL, PTC: MARK.FAIL.PARAM_ERROR};
-            socketSer.emit("Z", JSON.stringify(oRsp));
+            console.log(error)
         }
-
         console.log(data);
     })
 })

@@ -5,6 +5,7 @@
 
 function IPC(){
     var ipcRender = require('electron').ipcRenderer;
+    var N_Mark = require("./Native_Mark");
 
     this.NTSend = function(protocol_main, protocol_sub, data){
         if(data){

@@ -7,6 +7,9 @@ var NT_Mark = {
     },
 
     STATE: {
-        CONNECTION_REQUEST: 101
+        CONNECTION_REQUEST: 101,
+        CONNECTION_ACCESS: 102
     }
 }
+
+module.exports = NT_Mark;

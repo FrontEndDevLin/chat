@@ -7,7 +7,8 @@ let Mark = {
     },
 
     STATE: {
-        CONNECTION_REQUEST: 101
+        CONNECTION_REQUEST: 101,
+        CONNECTION_ACCESS: 102
     }
 }
 

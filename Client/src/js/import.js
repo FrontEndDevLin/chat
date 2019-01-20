@@ -1,5 +1,6 @@
-(function () {
-    var ipc = require("./js/IPCEntry");
+function importDOM() {
+    var ipc = require("./IPCEntry");
+    var N_Mark = require("./Native_Mark");
 
     $("#min").click(() => {
         ipc.NTSend(N_Mark.PTC_MAIN.WINDOW, N_Mark.WINDOW.MIN);
@@ -23,4 +24,6 @@
     $('#login_exit').click(() => { 
         ipc.NTSend(N_Mark.PTC_MAIN.WINDOW,N_Mark.WINDOW.LOGINCLOSE)
     })
-})()
+}
+
+module.exports = importDOM();

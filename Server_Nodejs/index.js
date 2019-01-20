@@ -17,6 +17,6 @@ io.on("connection", (socketSer)=>{
         } catch (error) {
             console.log(error)
         }
-        console.log(data);
+        socketSer.emit(Mark.RECV, {PTC_MAIN: Mark.PTC_MAIN.STATE, PTC_SUB: Mark.STATE.CONNECTION_ACCESS});
     })
 })

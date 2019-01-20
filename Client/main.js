@@ -13,30 +13,30 @@ Global.app = app;
 function createWindow() {
     // 创建浏览器窗口。
     // Global.mainWin = new BrowserWindow({ width: 900, height: 620 })
-    // Global.mainWin = new BrowserWindow({ width: 900, height: 620, frame: false });
-    Global.loginWin = new BrowserWindow({ width: 460, height: 400, frame: false })
-    // mainWin = Global.mainWin;
-    loginWin = Global.loginWin;
+    Global.mainWin = new BrowserWindow({ width: 900, height: 620, frame: false });
+    // Global.loginWin = new BrowserWindow({ width: 460, height: 400, frame: false })
+    mainWin = Global.mainWin;
+    // loginWin = Global.loginWin;
 
     // 然后加载应用的 index.html。
-    // mainWin.loadFile('./src/index.html')
-    loginWin.loadFile('./src/login.html')
+    mainWin.loadFile('./src/index.html')
+    // loginWin.loadFile('./src/login.html')
     // 打开开发者工具
-    // mainWin.webContents.openDevTools()
-    loginWin.webContents.openDevTools()
+    mainWin.webContents.openDevTools()
+    // loginWin.webContents.openDevTools()
 
     // 当 window 被关闭，这个事件会被触发。
-    // mainWin.on('closed', () => {
-    //     // 取消引用 window 对象，如果你的应用支持多窗口的话，
-    //     // 通常会把多个 window 对象存放在一个数组里面，
-    //     // 与此同时，你应该删除相应的元素。
-    //     mainWin = null
-    //     Global.mainWin = null
-    // });
-    loginWin.on('closed',()=>{
-        loginWin = null
-        Global.loginWin = null
-    })
+    mainWin.on('closed', () => {
+        // 取消引用 window 对象，如果你的应用支持多窗口的话，
+        // 通常会把多个 window 对象存放在一个数组里面，
+        // 与此同时，你应该删除相应的元素。
+        mainWin = null
+        Global.mainWin = null
+    });
+    // loginWin.on('closed',()=>{
+    //     loginWin = null
+    //     Global.loginWin = null
+    // })
 
     IPC.start();
 }

@@ -23,20 +23,7 @@ function IPC(){
         });
     }
 
-    // 回传给前端, 异步
-    function FESend(protocol_main, protocol_sub, data){
-        if(!ipcEvent) return;
-        if(data){
-            try {
-                data = JSON.stringify(data);
-            } catch (error) {
-                throw error;
-            }
-        }
-        ipcEvent.sender.send("FE", protocol_main, protocol_sub, data);
-    }
-
-    // 同步
+    // 同步回传给前端
     function FESendSync(data){
         if(!ipcEvent || !data) return;
         ipcEvent.returnValue = data;
@@ -81,7 +68,7 @@ function IPC(){
                 Gb.loginWin.minimize();
             } break;
             case N_Mark.WINDOW.LOGINCLOSE: {
-                Gb.loginWin.quit();
+                Gb.app.quit();
             } break;
             default:
                 break;

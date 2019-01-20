@@ -17,3 +17,5 @@ var N_Mark = {
         GET_HOST: 201
     }
 }
+
+module.exports = N_Mark;

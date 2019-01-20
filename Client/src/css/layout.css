@@ -282,4 +282,11 @@
     cursor: pointer;
     padding: .3rem 1.2rem;
     font-family: 'Microsoft Yahei';
+    border-radius: 2px;
+}
+
+.editor__main .sendbtn:hover {
+    background: #64B327;
+    border-color: #64B327;
+    color: #fff;
 }

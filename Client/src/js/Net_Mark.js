@@ -3,12 +3,14 @@ var NT_Mark = {
     RECV: 902,
 
     PTC_MAIN: {
-        STATE: 001
+        STATE:  001
     },
 
     STATE: {
-        CONNECTION_REQUEST: 101,
-        CONNECTION_ACCESS: 102
+        CONN_CHECK_REQUEST:     101,
+        CONN_CHECK_RESPONSE:    102,
+        CONNECT_REQUEST:        103,
+        CONNECT_ACCESS:         104
     }
 }
 

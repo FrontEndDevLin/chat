@@ -16,7 +16,6 @@
         var Net = require("./js/NETEntry");
         
         require("./js/PTCHandle").start();
-        
-        Net.send(NT_Mark.PTC_MAIN.STATE, NT_Mark.STATE.CONNECTION_REQUEST);
+        Net.send(NT_Mark.PTC_MAIN.STATE, NT_Mark.STATE.CONNECT_REQUEST);
     }
 })()

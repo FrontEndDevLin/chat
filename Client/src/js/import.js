@@ -1,6 +1,7 @@
 function importDOM() {
     var ipc = require("./IPCEntry");
     var N_Mark = require("./Native_Mark");
+    var G_space = require("./global");
 
     $("#min").click(() => {
         ipc.NTSend(N_Mark.PTC_MAIN.WINDOW, N_Mark.WINDOW.MIN);
@@ -17,12 +18,6 @@ function importDOM() {
 
     $("#close").click(() => {
         ipc.NTSend(N_Mark.PTC_MAIN.WINDOW, N_Mark.WINDOW.CLOSE);
-    })
-    $('#login_min').click(() => {
-        ipc.NTSend(N_Mark.PTC_MAIN.WINDOW,N_Mark.WINDOW.LOGINMIN)
-    })
-    $('#login_exit').click(() => { 
-        ipc.NTSend(N_Mark.PTC_MAIN.WINDOW,N_Mark.WINDOW.LOGINCLOSE)
     })
 }
 

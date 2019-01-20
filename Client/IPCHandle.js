@@ -4,6 +4,7 @@
  */
 
 const ipcMain = require('electron').ipcMain;
+const { BrowserWindow } = require('electron');
 const N_Mark = require('./Mark');
 const ini = require("ini");
 const fs = require("fs");
@@ -69,6 +70,16 @@ function IPC(){
             } break;
             case N_Mark.WINDOW.LOGINCLOSE: {
                 Gb.app.quit();
+            } break;
+            case N_Mark.WINDOW.SWITCH_TO_MAIN: {
+                Gb.mainWin = new BrowserWindow({ width: 900, height: 620, frame: false });
+                Gb.mainWin.loadFile('./src/index.html');
+                Gb.mainWin.webContents.openDevTools()
+                Gb.mainWin.on('closed', () => {
+                    Gb.mainWin = null
+                });
+                Gb.loginWin.close();
+                Gb.loginWin = null;
             } break;
             default:
                 break;

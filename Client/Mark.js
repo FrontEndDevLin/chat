@@ -13,7 +13,9 @@ const N_Mark = {
         MIN: 101,
         MAX: 102,
         CLOSE: 103,
-        REDU: 104
+        REDU: 104,
+        LOGINMIN: 105,
+        LOGINCLOSE:106
     },
 
     FILE: {

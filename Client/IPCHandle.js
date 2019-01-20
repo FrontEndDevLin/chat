@@ -77,7 +77,12 @@ function IPC(){
             case N_Mark.WINDOW.REDU: {
                 Gb.mainWin.unmaximize();
             } break;
-
+            case N_Mark.WINDOW.LOGINMIN: {
+                Gb.loginWin.minimize();
+            } break;
+            case N_Mark.WINDOW.LOGINCLOSE: {
+                Gb.loginWin.quit();
+            } break;
             default:
                 break;
         }

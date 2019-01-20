@@ -1,0 +1,93 @@
+.login{
+    width: 100%;
+    height: 100%;
+    background: #00B9E3;
+    text-align: center;
+}
+.login .top{
+    width: 100%;
+    height: 55%;
+    position: relative;
+}
+.login .top .logo{
+    display: inline-block;
+    width: 30%;
+    height: 30%;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.login .top .icon_box{
+    display: inline-block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    /*background: #ccc;*/
+    width: 7rem;
+    height: 2rem;
+}
+.login .top .icon_box .min ,.login .top .icon_box .exit{
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    /*background: #fff;*/
+    line-height: 2rem;
+    font-size: 2rem;
+    color: #fff;
+}    
+.login .bottom{
+    width: 100%;
+    height: 45%;
+    background: #EBF2F9;
+   
+}
+.login .bottom .input_box{
+    margin: 1rem 0;
+}
+.login .bottom .input_box .item{
+    width: 20rem;
+    height: 3rem;
+    background: #fff;
+    border: 1px solid #BABABA;
+    border-radius: 0 0 .4rem .4rem;
+    margin: 0 auto;
+}
+.login .bottom .input_box .item.text{
+    border-bottom:none;
+    border-radius:.4rem .4rem 0 0 ;
+}
+.login .bottom .input_box .item input{
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    padding: .05rem 1rem;
+    box-sizing: border-box;
+}
+.login .bottom .act{
+    width: 20rem;
+    margin: 1rem auto;
+}
+.login .bottom .act .regi a{
+    color: #0095B7;
+    text-decoration: none;
+}
+.login .bottom .act input{
+    vertical-align: middle;
+}
+.login .bottom .login{
+    display: inline-block;
+    width:20rem;
+    height: 3rem;
+    background: #00B9E3;
+    border-radius: .4rem;
+    line-height: 3rem;
+    color: #fff;
+    font-size: 1.4rem;
+}
+.login .bottom .login:hover{
+    cursor: pointer;
+    background: #3CC3F5;
+}

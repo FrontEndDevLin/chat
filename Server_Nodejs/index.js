@@ -18,6 +18,7 @@ io.on("connection", (socketSer)=>{
             console.log(error)
         }
         socketSer.emit(Mark.RECV, {PTC_MAIN: Mark.PTC_MAIN.STATE, PTC_SUB: Mark.STATE.CONN_CHECK_RESPONSE});
+        
     });
 
     socketSer.on("disconnect", ()=>{

@@ -8,6 +8,7 @@ let httpServ = HTTP.createServer().listen(PORT, ()=>{
 })
 
 let io = SIO(httpServ);
+let PTC = require("./PTCParser");
 
 io.on("connection", (socketSer)=>{
     socketSer.on(Mark.SEND, (data)=>{
@@ -17,8 +18,7 @@ io.on("connection", (socketSer)=>{
         } catch (error) {
             console.log(error)
         }
-        socketSer.emit(Mark.RECV, {PTC_MAIN: Mark.PTC_MAIN.STATE, PTC_SUB: Mark.STATE.CONN_CHECK_RESPONSE});
-        
+        PTC.OnParse(data, socketSer);
     });
 
     socketSer.on("disconnect", ()=>{

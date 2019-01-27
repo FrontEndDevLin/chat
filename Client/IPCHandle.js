@@ -38,6 +38,9 @@ function IPC(){
             case N_Mark.PTC_MAIN.FILE: {
                 OnFile(protocol_sub, data);
             } break;
+            case N_Mark.PTC_MAIN.STATE: {
+                OnState(protocol_sub, data);
+            } break;
             default:
                 break;
         }
@@ -53,33 +56,17 @@ function IPC(){
         }
         switch (protocol_sub) {
             case N_Mark.WINDOW.MIN: {
-                Gb.mainWin.minimize();
+                Gb.win.minimize();
             } break;
             case N_Mark.WINDOW.MAX: {
-                Gb.mainWin.maximize();
+                Gb.win.maximize();
                 // FESend(N_Mark.PTC_MAIN.WINDOW, N_Mark.WINDOW.MAX, {"name": "Lin"});
             } break;
             case N_Mark.WINDOW.CLOSE: {
                 Gb.app.quit();
             } break;
             case N_Mark.WINDOW.REDU: {
-                Gb.mainWin.unmaximize();
-            } break;
-            case N_Mark.WINDOW.LOGINMIN: {
-                Gb.loginWin.minimize();
-            } break;
-            case N_Mark.WINDOW.LOGINCLOSE: {
-                Gb.app.quit();
-            } break;
-            case N_Mark.WINDOW.SWITCH_TO_MAIN: {
-                Gb.mainWin = new BrowserWindow({ width: 900, height: 620, frame: false });
-                Gb.mainWin.loadFile('./src/index.html');
-                Gb.mainWin.webContents.openDevTools()
-                Gb.mainWin.on('closed', () => {
-                    Gb.mainWin = null
-                });
-                Gb.loginWin.close();
-                Gb.loginWin = null;
+                Gb.win.unmaximize();
             } break;
             default:
                 break;
@@ -108,6 +95,24 @@ function IPC(){
         }
     }
 
+    function OnState(protocol_sub, data){
+        if(data){
+            try{
+                data = JSON.parse(data);
+            }catch(error){
+                throw error;
+            }
+        }
+        switch (protocol_sub) {
+            case N_Mark.STATE.LOGIN_ACCESS: {
+                Gb.win.setSize(900, 620);
+                Gb.win.center();
+            } break;
+        
+            default:
+                break;
+        }
+    }
 }
 
 module.exports = new IPC();

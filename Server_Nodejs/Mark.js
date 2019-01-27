@@ -3,14 +3,19 @@ let Mark = {
     RECV: 902,
 
     PTC_MAIN: {
-        STATE:  001
+        STATE:  001,
+        AUTH:   002
     },
 
     STATE: {
-        CONN_CHECK_REQUEST:     101,
-        CONN_CHECK_RESPONSE:    102,
-        CONNECT_REQUEST:        103,
-        CONNECT_ACCESS:         104
+        CONNECT_REQUEST:        101,
+        CONNECT_ACCESS:         102
+    },
+
+    AUTH: {
+        LOGIN_REQUEST:          201,
+        LOGIN_RESPONSE_SUCC:    202,
+        LOGIN_RESPONSE_FAIL:    203
     }
 }
 

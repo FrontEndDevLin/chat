@@ -11,6 +11,7 @@ let io = SIO(httpServ);
 let PTC = require("./PTCParser");
 
 io.on("connection", (socketSer)=>{
+    // console.log(14);
     socketSer.on(Mark.SEND, (data)=>{
         if(!data) return;
         try {

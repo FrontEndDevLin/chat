@@ -1,9 +1,9 @@
 
 function Net(){
     var G_space = require("./global");
-    var socketClient = G_space.GetSocketCli();
     var NT_Mark = require("./Net_Mark");
     this.send = function(PTC_main, PTC_sub, data){
+        var socketClient = G_space.GetSocketCli();
         if(data){
             try {
                 data = JSON.stringify(data);

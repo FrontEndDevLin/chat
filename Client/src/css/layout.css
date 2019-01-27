@@ -2,6 +2,7 @@
     height: 100%;
     overflow: hidden;
     position: relative;
+    display: none;
 }
 
 .navbar {

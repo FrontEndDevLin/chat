@@ -1,21 +1,23 @@
 var N_Mark = {
     PTC_MAIN: {
         WINDOW:         001,
-        FILE:           002
+        FILE:           002,
+        STATE:          003
     },
 
     WINDOW: {
         MIN:            101,
         MAX:            102,
         CLOSE:          103,
-        REDU:           104,
-        LOGINMIN:       105,
-        LOGINCLOSE:     106,
-        SWITCH_TO_MAIN: 107
+        REDU:           104
     },
 
     FILE: {
         GET_HOST:       201
+    },
+
+    STATE: {
+        LOGIN_ACCESS:   301
     }
 }
 

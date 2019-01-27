@@ -6,7 +6,8 @@
 const N_Mark = {
     PTC_MAIN: {
         WINDOW:         001,
-        FILE:           002
+        FILE:           002,
+        STATE:          003
     },
 
     WINDOW: {
@@ -16,11 +17,14 @@ const N_Mark = {
         REDU:           104,
         LOGINMIN:       105,
         LOGINCLOSE:     106,
-        SWITCH_TO_MAIN: 107
     },
 
     FILE: {
         GET_HOST:       201
+    },
+
+    STATE: {
+        LOGIN_ACCESS:   301
     }
 }
 

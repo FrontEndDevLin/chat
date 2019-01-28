@@ -15,7 +15,10 @@ let Mark = {
     AUTH: {
         LOGIN_REQUEST:          201,
         LOGIN_RESPONSE_SUCC:    202,
-        LOGIN_RESPONSE_FAIL:    203
+        LOGIN_RESPONSE_FAIL:    203,
+        REGIST_REQUEST:         204,
+        REGIST_RESPONSE_SUCC:   205,
+        REGIST_RESPONSE_FAIL:   206
     }
 }
 

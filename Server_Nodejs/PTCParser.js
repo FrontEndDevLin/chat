@@ -4,6 +4,7 @@
  */
 
 const Mark = require("./Mark");
+let MG = require("./MongoDB");
 let User = require("./UserInterface");
 
 let Net = {
@@ -18,21 +19,6 @@ let Net = {
         }
         let packge = {PTC_MAIN: ptc_main, PTC_SUB: ptc_sub, data: data}
         socket.emit(Mark.RECV, JSON.stringify(packge));
-    }
-}
-
-let ACC = {
-    "13650728002": {
-        _id: "13650728002",
-        name: "Lin_HR",
-        pwd: "123abc",
-        sn: 10001
-    },
-    "13535272749": {
-        _id: "13535272749",
-        name: "Lucy",
-        pwd: "abc123",
-        sn: 10002
     }
 }
 
@@ -85,14 +71,33 @@ class PTCParser {
             case Mark.AUTH.LOGIN_REQUEST: {
                 let id = param["token"],
                     pwd = param["pwd"];
-                if(ACC[id] && ACC[id]["pwd"] == pwd){
-                    let resData = {"name": ACC[id]["name"], "sn": ACC[id]["sn"]};
-                    Net.Resp(socket, Mark.PTC_MAIN.AUTH, Mark.AUTH.LOGIN_RESPONSE_SUCC, resData);
-                } else {
-                    Net.Resp(socket, Mark.PTC_MAIN.AUTH, Mark.AUTH.LOGIN_RESPONSE_FAIL);
-                }
+                User.Auth(id, pwd, function(err, result){
+                    if(err) {
+                        Net.Resp(socket, Mark.PTC_MAIN.AUTH, Mark.AUTH.LOGIN_RESPONSE_FAIL);
+                    } else {
+                        Net.Resp(socket, Mark.PTC_MAIN.AUTH, Mark.AUTH.LOGIN_RESPONSE_SUCC, result);
+                    }
+                });
             } break;
-        
+            case Mark.AUTH.REGIST_REQUEST: {
+                let id = param["token"],
+                    pwd = param["pwd"],
+                    name = param["name"];
+                if( !id.trim() || !pwd || !name.trim() ) {
+                    return;
+                }
+                let doc = {"name": name, "pwd": pwd, "id": id};
+                User.Insert(doc, function(err, isSucc){
+                    if(err){
+                        console.log(err)
+                    }
+                    if(isSucc) {
+                        Net.Resp(socket, Mark.PTC_MAIN.AUTH, Mark.AUTH.REGIST_RESPONSE_SUCC)
+                    } else {
+                        Net.Resp(socket, Mark.PTC_MAIN.AUTH, Mark.AUTH.REGIST_RESPONSE_FAIL)
+                    }
+                })
+            } break;
             default:
                 break;
         }

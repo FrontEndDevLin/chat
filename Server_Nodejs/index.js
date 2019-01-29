@@ -8,9 +8,11 @@ let httpServ = HTTP.createServer().listen(PORT, ()=>{
 })
 
 let io = SIO(httpServ);
+let CNTEntry = require("./CNTEntry");
 let PTC = require("./PTCParser");
 
 io.on("connection", (socketSer)=>{
+    var cnt = new CNTEntry(socketSer);
     // console.log(14);
     socketSer.on(Mark.SEND, (data)=>{
         if(!data) return;

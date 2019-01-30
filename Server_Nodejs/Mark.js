@@ -1,4 +1,11 @@
 let Mark = {
+    IO_EVENT: {
+        CONNECTION:             1001,
+        DATA:                   1002,
+        CLOSE:                  1003,
+        ERROR:                  1004
+    },
+
     SEND: 901,
     RECV: 902,
 

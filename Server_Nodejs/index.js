@@ -1,5 +1,4 @@
-let IoMod = require("./IoModle");
+let IOSrvEntry = require("./IOSrvEntry");
 
-IoMod.IoStart(function(){
-    //...
-});
+// The scoket process
+IOSrvEntry.NetStart();

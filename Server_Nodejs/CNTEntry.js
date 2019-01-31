@@ -1,33 +1,33 @@
 /**
- * create by Lin_HR at 2019/1/20
+ * create by Lin_HR in 2019/1/20
  * class CNTEntry: connection entry 
  * 保存socket信息的类
  */
 
 function CNTEntry(socket){
-    var oSocket = socket, id = socket["id"], sn;
+    let oSocket = socket, id = socket["id"], sn;
     this.GetSocket = function () {
         return oSocket;
     }
 
-    var activeTime = new Date().getTime();
+    let activeTime = new Date().getTime();
     this.IsTimeout = function () {
-        return new Date().getTime() - activeTime >= 180000 ? true : false;
+        return new Date().getTime() - activeTime >= 180000;
     }
 
-    this.UpdateActiveTime = function () {
-        activeTime = new Date().getTime();
+    this.UpdateActiveTime = function (timestamp) {
+        activeTime = timestamp;
     }
 
-    this.GetSocketId = function () {
+    this.GetId = function () {
         return id;
     }
 
-    this.BindSocketSN = function (token) {
+    this.SetSN = function (token) {
         sn = token;
     }
 
-    this.GetSocketSN = function () {
+    this.GetSN = function () {
         return sn;
     }
 }

@@ -1,5 +1,6 @@
 let Mark = {
     IO_EVENT: {
+        LISTENING:              1000,
         CONNECTION:             1001,
         DATA:                   1002,
         CLOSE:                  1003,

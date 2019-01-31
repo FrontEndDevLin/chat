@@ -1,13 +1,18 @@
 /**
- * create by Lin_HR at 2019/1/29
+ * create by Lin_HR in 2019/1/29
  * connection list interface
  */
 
 function CNTInterface(){
-    var connectionList = {};
+    let CNTEntry = require("./CNTEntry");
+    let connectionList = {};
+    let connectionAuthList = {};
 
-    this.Push = function (CNTEntry) {
-        connectionList[CNTEntry.GetSocketId()] = CNTEntry;
+    this.PushConnection = function (socket) {
+        let id = socket["id"];
+        if(!connectionList[id]){
+            connectionList[id] = new CNTEntry(socket);
+        }
     }
 
     this.GetConnectionList = function () {
@@ -18,12 +23,18 @@ function CNTInterface(){
         return connectionList(id);
     }
 
+    this.BindConnectionBySN = function (socket, sn) {
+        let id = socket["id"];
+        connectionAuthList[sn] = id;
+    }
+
     this.GetConnectionBySN = function (sn) {
-        for(var id in connectionList){
-            if(connectionList[id].GetSocketSN() == sn) {
-                return connectionList[id];
-            }
-        }
-        return null;
+        return connectionList[connectionAuthList[sn]];
+    }
+
+    this.RemoveConnectById = function (socketId) {
+        delete connectionList[socketId];
     }
 }
+
+module.exports = new CNTInterface();

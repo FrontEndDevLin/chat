@@ -4,45 +4,33 @@
  */
 
 const ipcMain = require('electron').ipcMain;
+const { BrowserWindow } = require('electron');
 const N_Mark = require('./Mark');
 const ini = require("ini");
 const fs = require("fs");
 let Gb = require("./Global");
 
-function IPC(){
+function IPC() {
     var ipcEvent = null;
-    this.start = function(){
-        ipcMain.on("NT", (event, protocol_main, protocol_sub, data)=>{
+    this.start = function () {
+        ipcMain.on("NT", (event, protocol_main, protocol_sub, data) => {
             ipcEvent = event;
             OnParse(protocol_main, protocol_sub, data)
         });
 
-        ipcMain.on("NTSYNC", (event, protocol_main, protocol_sub, data)=>{
+        ipcMain.on("NTSYNC", (event, protocol_main, protocol_sub, data) => {
             ipcEvent = event;
             OnParse(protocol_main, protocol_sub, data)
         });
     }
 
-    // 回传给前端, 异步
-    function FESend(protocol_main, protocol_sub, data){
-        if(!ipcEvent) return;
-        if(data){
-            try {
-                data = JSON.stringify(data);
-            } catch (error) {
-                throw error;
-            }
-        }
-        ipcEvent.sender.send("FE", protocol_main, protocol_sub, data);
-    }
-
-    // 同步
-    function FESendSync(data){
-        if(!ipcEvent || !data) return;
+    // 同步回传给前端
+    function FESendSync(data) {
+        if (!ipcEvent || !data) return;
         ipcEvent.returnValue = data;
     }
 
-    function OnParse(protocol_main, protocol_sub, data){
+    function OnParse(protocol_main, protocol_sub, data) {
         switch (protocol_main) {
             case N_Mark.PTC_MAIN.WINDOW: {
                 OnWindow(protocol_sub, data);
@@ -50,13 +38,16 @@ function IPC(){
             case N_Mark.PTC_MAIN.FILE: {
                 OnFile(protocol_sub, data);
             } break;
+            case N_Mark.PTC_MAIN.STATE: {
+                OnState(protocol_sub, data);
+            } break;
             default:
                 break;
         }
     }
 
-    function OnWindow(protocol_sub, data){
-        if(data){
+    function OnWindow(protocol_sub, data) {
+        if (data) {
             try {
                 data = JSON.parse(data);
             } catch (error) {
@@ -65,34 +56,32 @@ function IPC(){
         }
         switch (protocol_sub) {
             case N_Mark.WINDOW.MIN: {
-                Gb.mainWin.minimize();
+                Gb.win.minimize();
             } break;
             case N_Mark.WINDOW.MAX: {
-                Gb.mainWin.maximize();
+                Gb.win.maximize();
                 // FESend(N_Mark.PTC_MAIN.WINDOW, N_Mark.WINDOW.MAX, {"name": "Lin"});
             } break;
             case N_Mark.WINDOW.CLOSE: {
                 Gb.app.quit();
             } break;
             case N_Mark.WINDOW.REDU: {
-                Gb.mainWin.unmaximize();
+                Gb.win.unmaximize();
             } break;
-            case N_Mark.WINDOW.LOGINMIN: {
-                Gb.loginWin.minimize();
-            } break;
-            case N_Mark.WINDOW.LOGINCLOSE: {
-                Gb.loginWin.quit();
+            case N_Mark.WINDOW.FLASH_FRAME: {
+                // console.log(72)
+                Gb.win.flashFrame(true);
             } break;
             default:
                 break;
         }
     }
 
-    function OnFile(protocol_sub, data){
-        if(data){
-            try{
+    function OnFile(protocol_sub, data) {
+        if (data) {
+            try {
                 data = JSON.parse(data);
-            }catch(error){
+            } catch (error) {
                 throw error;
             }
         }
@@ -110,6 +99,24 @@ function IPC(){
         }
     }
 
+    function OnState(protocol_sub, data) {
+        if (data) {
+            try {
+                data = JSON.parse(data);
+            } catch (error) {
+                throw error;
+            }
+        }
+        switch (protocol_sub) {
+            case N_Mark.STATE.LOGIN_ACCESS: {
+                Gb.win.setSize(900, 620);
+                Gb.win.center();
+            } break;
+
+            default:
+                break;
+        }
+    }
 }
 
 module.exports = new IPC();

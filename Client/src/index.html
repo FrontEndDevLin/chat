@@ -5,20 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/layout.css">
     <title>Venssage</title>
 </head>
 <body>
+    <div class="login" id="loginframe">
+        <div class="top">
+            <span class="logo" id="logo">
+                <!--<img src="" alt="">-->
+                连接服务器中...
+            </span>
+            <span class="icon_box clear">
+                <!--<span class="down">
+                    <img src="" alt="">
+                </span>-->
+                <span id="login_min" class="min lf">
+                    <!--<img src="" alt="">-->
+                    _
+                </span>
+                <span id="login_exit" class="exit lf">
+                    X
+                    <!--<img src="" alt="">-->
+                </span>
+            </span>
+        </div>
+        <div class="bottom clear">
+            <ul class="input_box">
+                <li class="item text">
+                    <input type="text" id="token" value="13650728002">
+                </li>
+                <li class="item pass">
+                    <input type="password" id="pwd" value="123abc">
+                </li>
+            </ul>
+            <div class="act clear">
+                <span class="rem lf">
+                    <input type="checkbox">
+                    记住密码
+                </span>
+                <span class="regi rt">
+                    <a href="#">注册账号</a>
+                </span>
+            </div>
+            <span class="login" id="login">登 录</span>
+        </div>
+    </div>
+
     <div class="globalWin clear">
         <div class="navbar lf">
             <div class="avatar__content">
-                <img class="avatar" src="images/header.jpg">
+                <img class="avatar" src="images/header.jpg" id="avatar">
             </div>
-            <ul class="functab__content">
-                <li class="functab--active">
+            <ul class="functab__content" id="funcTab">
+                <li class="functab--active" data-view="chatlist">
                     <img src="images/chat.png" title="聊天">
                 </li>
-                <li>
+                <li data-view="addreslist">
                     <img src="images/group.png" title="通讯录">
                 </li>
             </ul>
@@ -28,14 +71,14 @@
         </div>
         <div class="leftlist lf"  onselectstart="return false;">
             <!-- 对应聊天列表 -->
-            <div class="chatlist">
+            <div class="chatlist" id="chatlist">
                 <ul>
-                    <li class="chatitem___content chatitem___content--active clear">
+                    <!--<li class="chatitem___content chatitem___content--active clear">
                         <div class="chatitem___avatar lf">
                             <img src="images/header.jpg">
                         </div>
                         <div class="chatitem___detail lf">
-                            <span>江江</span>
+                            <span>聊天对象</span>
                             <p>聊天语句</p>
                         </div>
                         <div class="chatitem__time rt">
@@ -47,7 +90,7 @@
                             <img src="images/header.jpg">
                         </div>
                         <div class="chatitem___detail lf">
-                            <span>江江</span>
+                            <span>聊天对象</span>
                             <p>聊天语句</p>
                         </div>
                         <div class="chatitem__time rt">
@@ -59,18 +102,18 @@
                             <img src="images/header.jpg">
                         </div>
                         <div class="chatitem___detail lf">
-                            <span>江江</span>
+                            <span>聊天对象</span>
                             <p>聊天语句</p>
                         </div>
                         <div class="chatitem__time rt">
                             <span>23:26</span>
                         </div>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
 
             <!-- 对应通讯录 -->
-            <div class="addreslist" style="display: none">
+            <div class="addreslist" id="addreslist" style="display: none">
                 <!-- 群聊 -->
                 <div class="addreslist__item">
                     <h3>群聊</h3>
@@ -89,15 +132,15 @@
                 <!-- 好友 -->
                 <div class="addreslist__item">
                     <h3>好友</h3>
-                    <ul>
-                        <li class="friend__content clear">
+                    <ul id="friendsList">
+                        <!--<li class="friend__content clear">
                             <div class="friend__avatar">
                                 <img src="images/header.jpg">
                             </div>
                             <div class="friend__name">
-                                <span>江江</span>
+                                <span>聊天对象</span>
                             </div>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
             </div>
@@ -105,21 +148,27 @@
         </div>
         <div class="chatwin__outer">
             <div class="chatwin">
-                <div class="chatwin__main--outer">
-                    <div class="chatwin__main clear">
-                        <div class="msgitem clear left">
-                            <img src="images/header.jpg" class="msgitem__avatar">
-                            <div class="content__outer">
-                                <span class="content__user">江江</span>
-                                <div class="msgitem__content">聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句</div>
+                <div class="chatwin__cover" id="chatwinCover">
+                    <div class="chatwin__cover--inner">
+                        <img src="images/logo.png" class="chatwin__logo">
+                    </div>
+                </div>
+                <div class="chatwin__main--outer" id="chatMsgWin">
+                    <div class="chatwin__main" id="session">
+                        <!--<div class="chatwin__session clear" data-sn="10001">
+                            <div class="msgitem clear left">
+                                <img src="images/header.jpg" class="msgitem__avatar">
+                                <div class="content__outer">
+                                    <div class="msgitem__content">聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="msgitem clear right">
-                            <img src="images/header.jpg" class="msgitem__avatar">
-                            <div class="content__outer">
-                                <div class="msgitem__content">聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句</div>
+                            <div class="msgitem clear right">
+                                <img src="images/header.jpg" class="msgitem__avatar">
+                                <div class="content__outer">
+                                    <div class="msgitem__content">聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句聊天语句</div>
+                                </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="chatwin__top">
@@ -131,10 +180,10 @@
                         </ul>
                     </div>
                     <div class="chatwin--target">
-                        <span>江江</span>
+                        <span id="chatwin_target"></span>
                     </div>
                 </div>
-                <div class="chatwin__editor">
+                <div class="chatwin__editor" id="chatwinEditor">
                     <div class="editor__tool">
                         <ul class="clear">
                             <li title="表情">
@@ -152,19 +201,14 @@
                         </ul>
                     </div>
                     <div class="editor__main">
-                        <div contenteditable="true" class="editor__input"></div>
-                        <button class="sendbtn">发送</button>
+                        <div contenteditable="true" class="editor__input" id="editor"></div>
+                        <button class="sendbtn" id="sendBtn">发送</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="http://127.0.0.1:3000/socket.io/socket.io.js"></script>
-    <script src="js/Net_Mark.js"></script>
-    <script src="js/Native_Mark.js"></script>
-    <script src="js/IpcEntry.js"></script>
     <script src="js/start.js"></script>
-    <script src="js/import.js"></script>
 </body>
 </html>

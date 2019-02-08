@@ -1,8 +1,6 @@
 let global = {
-    
     app: null,
-    loginWin: null,
-    mainWin: null
+    win: null
 }
 
 module.exports = global;

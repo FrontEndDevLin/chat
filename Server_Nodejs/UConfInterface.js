@@ -85,6 +85,52 @@ function UserConf() {
             }
         });
     }
+
+    this.SetRecentContacts = (sn, destSN, callback) => {
+        let progress = 0;
+        UserConfModel.findById(sn, { "_id": 0, "cth": 1 }, (err, result) => {
+            if (err) throw err;
+            let contactHis = JSON.parse(JSON.stringify(result["cth"]));
+            let exists = false;
+            for (let contactHisItem of contactHis) {
+                if (contactHisItem["sn"] == destSN) {
+                    contactHisItem["t"] = new Date().getTime();
+                    exists = true;
+                    break;
+                }
+            }
+            if (!exists) {
+                contactHis.push({ "sn": destSN, "t": new Date().getTime() });
+            } else {
+                contactHis = contactHis.sort(compare("t"));
+            }
+            if (contactHis.length > 30) {
+                let splitCount = contactHis.length - 30;
+                contactHis.splice(30, splitCount);
+            }
+            UserConfModel.updateOne({ "_id": sn }, { "$set": { "cth": contactHis } }, (err, result) => {
+                if (callback) {
+                    return callback(err, result);
+                }
+            })
+        });
+    }
+
+    this.GetRecentContacts = (sn, callback) => {
+        
+    }
+
+    function compare(property, num) {
+        return function (obj1, obj2) {
+            let value1 = obj1[property];
+            let value2 = obj2[property];
+            if (!num || num == -1) {
+                return value2 - value1;     // 降序
+            } else if (num == 1) {
+                return value1 - value2;
+            }
+        }
+    }
 }
 
 module.exports = new UserConf();

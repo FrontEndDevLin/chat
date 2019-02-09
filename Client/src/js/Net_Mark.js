@@ -27,14 +27,19 @@ var NT_Mark = {
 
     INIT: {
         GET_FRIENDSLIST:        301,
-        RES_FRIENDSLIST:        302
+        RES_FRIENDSLIST:        302,
+        GET_RECENTCONTACT:      303,
+        RES_RECENTCONTACT:      304
     },
 
     CHAT: {
         SEND_MESSAGE:           401,
         RECV_MESSAGE:           402,
         GET_TARGET_AVATAR:      403,
-        RES_TARGET_AVATAR:      405        
+        RES_TARGET_AVATAR:      405,
+        READED_MSG:             406,
+        MSG_HISTORY_REQUEST:    407,
+        MSG_HISTORY_RESPONSE:   408
     }
 }
 

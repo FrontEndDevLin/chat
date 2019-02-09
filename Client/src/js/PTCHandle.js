@@ -77,6 +77,7 @@ function PTCHandle() {
                 $("#avatar").attr("src", avtDir);
                 G_space.SetAvatar(avtDir);
 
+                Net.send(NT_Mark.PTC_MAIN.INIT, NT_Mark.INIT.GET_RECENTCONTACT);
                 Net.send(NT_Mark.PTC_MAIN.INIT, NT_Mark.INIT.GET_FRIENDSLIST);
             } break;
             case NT_Mark.AUTH.LOGIN_RESPONSE_FAIL: {
@@ -120,6 +121,7 @@ function PTCHandle() {
                     G_space.joinConversation(data["fromSN"], true);
                 }
                 G_space.printMsg(data);
+                Net.send(NT_Mark.PTC_MAIN.CHAT, NT_Mark.CHAT.READED_MSG, {"msgId": data["msgId"]});
                 if( G_space.getDestSN() != data["fromSN"] ){
                     ipc.FlashWindow();
                 }
@@ -127,6 +129,9 @@ function PTCHandle() {
             case NT_Mark.CHAT.RES_TARGET_AVATAR: {
                 G_space.SetChatDetail(data["sn"], { "avatar": G_space.base64ToImgDir(data["avatar"]) });
                 // console.log(G_space.GetChatDeatil(data["sn"]));
+            } break;
+            case NT_Mark.CHAT.MSG_HISTORY_RESPONSE: {
+                console.log(data);
             } break;
             default:
                 break;

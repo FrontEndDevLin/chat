@@ -8,6 +8,7 @@ let MG = require("./MongoDB");
 let User = require("./UserInterface");
 let CNT = require("./CNTInterface");
 let UConf = require("./UConfInterface");
+let CTL = require("./CTLInterface");
 let fs = require("fs");
 
 let NetResp = (socket, ptc_main, ptc_sub, data) => {
@@ -127,9 +128,9 @@ class PTCParser {
                 console.log(error)
             }
         }
+        let sn = CNT.GetConnectionBySocket(socket).GetSN();
         switch (oData.PTC_SUB) {
             case Mark.INIT.GET_FRIENDSLIST: {
-                let sn = CNT.GetConnectionBySocket(socket).GetSN();
                 if (sn) {
                     UConf.GetFriends(sn, (err, oAyFriendsInfo) => {
                         if (err) throw err;
@@ -141,11 +142,17 @@ class PTCParser {
                     });
                 }
             } break;
+            case Mark.INIT.GET_RECENTCONTACT: {
+                if (sn) {
+                    UConf.GetRecentContacts(sn)
+                }
+            } break;
         }
     }
 
     OnChat(oData, socket) {
         let param = oData["data"];
+        let sn = CNT.GetConnectionBySocket(socket).GetSN();
         if (param) {
             try {
                 param = JSON.parse(param);
@@ -158,13 +165,15 @@ class PTCParser {
                 let dSN = param["destSN"], msg = param["msg"];
                 if(!dSN || !msg) return;
                 let destConnection = CNT.GetConnectionBySN(dSN);
-                if(destConnection) {
-                    let sn = CNT.GetConnectionBySocket(socket).GetSN();
-                    User.GetInfoBySN(sn, { "name": 1, "_id": 0 }, (err, result) => {
-                        let data = { "fromSN": sn, "name": result["name"], "msg": msg };
-                        NetResp(destConnection.GetSocket(), Mark.PTC_MAIN.CHAT, Mark.CHAT.RECV_MESSAGE, data)
-                    })
-                }
+                UConf.SetRecentContacts(sn, dSN);
+                CTL.Insert(sn, dSN, msg, (msgId) => {
+                    if(destConnection) {
+                        User.GetInfoBySN(sn, { "name": 1, "_id": 0 }, (err, result) => {
+                            let data = { "fromSN": sn, "name": result["name"], "msg": msg, "msgId": msgId };
+                            NetResp(destConnection.GetSocket(), Mark.PTC_MAIN.CHAT, Mark.CHAT.RECV_MESSAGE, data)
+                        })
+                    }
+                });
             } break;
             case Mark.CHAT.GET_TARGET_AVATAR: {
                 let dSN = param["destSN"];
@@ -183,6 +192,24 @@ class PTCParser {
                     })
                 })
             } break;
+            case Mark.CHAT.READED_MSG: {
+                let msgId = param["msgId"];
+                CTL.ReadedMsg(msgId);
+            } break;
+            case Mark.CHAT.MSG_HISTORY_REQUEST: {
+                let limit = param["limit"] || 10,
+                    skip = param["skip"] || 0,
+                    pno = param["pno"] || 1,
+                    isGroup = param["isGroup"] || false;
+                let dSN = param["destSN"];
+
+                let option = {"limit": limit, "skip": skip, "pno": pno};
+                CTL.GetChatLog(sn, dSN, option, (err, result) => {
+                    if (err) throw err;
+                    // console.log(result);
+                    NetResp(scoket, Mark.PTC_MAIN.CHAT, Mark.CHAT.MSG_HISTORY_RESPONSE, result);
+                })
+            }
         }
     }
 }

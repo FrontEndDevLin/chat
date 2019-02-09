@@ -41,7 +41,6 @@ function IoSrvEntry(){
     }
 
     function OnData(socket, data){
-        // TODO: 二进制数据的处理
         PTC.OnParse(data, socket);
     }
 

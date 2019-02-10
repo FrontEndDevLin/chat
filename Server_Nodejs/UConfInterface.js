@@ -117,7 +117,13 @@ function UserConf() {
     }
 
     this.GetRecentContacts = (sn, callback) => {
-        
+        UserConfModel.findById(sn, {"cth": 1, "_id": 0}, (err, result) => {
+            if(err) {
+                return callback(err, null);
+            } else {
+                return callback(null, result["cth"]);
+            }
+        })
     }
 
     function compare(property, num) {

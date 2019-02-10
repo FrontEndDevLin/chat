@@ -144,7 +144,11 @@ class PTCParser {
             } break;
             case Mark.INIT.GET_RECENTCONTACT: {
                 if (sn) {
-                    UConf.GetRecentContacts(sn)
+                    UConf.GetRecentContacts(sn, (err, cthList) => {
+                        if (cthList) {
+                            NetResp(socket, Mark.PTC_MAIN.INIT, Mark.INIT.RES_RECENTCONTACT, cthList);
+                        }
+                    })
                 }
             } break;
         }

@@ -76,8 +76,7 @@ function PTCHandle() {
                 var avtDir = G_space.base64ToImgDir(data["avatar"]);
                 $("#avatar").attr("src", avtDir);
                 G_space.SetAvatar(avtDir);
-
-                Net.send(NT_Mark.PTC_MAIN.INIT, NT_Mark.INIT.GET_RECENTCONTACT);
+                
                 Net.send(NT_Mark.PTC_MAIN.INIT, NT_Mark.INIT.GET_FRIENDSLIST);
             } break;
             case NT_Mark.AUTH.LOGIN_RESPONSE_FAIL: {
@@ -99,10 +98,13 @@ function PTCHandle() {
         switch (ptc_sub) {
             case NT_Mark.INIT.RES_FRIENDSLIST: {
                 G_space.showFriendsList(data);
+                Net.send(NT_Mark.PTC_MAIN.INIT, NT_Mark.INIT.GET_RECENTCONTACT);
             } break;
-
-            default:
-                break;
+            case NT_Mark.INIT.RES_RECENTCONTACT: {
+                for (var i = 0; i < data.length; i++) {
+                    G_space.joinConversation(data[i]["sn"], true)
+                }
+            } break;
         }
     }
 

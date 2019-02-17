@@ -38,6 +38,7 @@ function IoSrvEntry(){
 
     function OnConnection(socket){
         CNT.PushConnection(socket);
+        CNT.PrintConnectCount();
     }
 
     function OnData(socket, data){
@@ -47,6 +48,7 @@ function IoSrvEntry(){
     function OnClose(socket){
         let socketId = socket["id"];
         CNT.RemoveConnectById(socketId);
+        CNT.PrintConnectCount();
     }
 
     function OnError(scoket, error){

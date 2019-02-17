@@ -41,6 +41,14 @@ function CNTInterface(){
     this.RemoveConnectById = function (socketId) {
         delete connectionList[socketId];
     }
+
+    this.PrintConnectCount = function () {
+        let count = 0;
+        for (var k in connectionList) {
+            count++;
+        }
+        console.log(`[Connections: ${count}]`);
+    }
 }
 
 module.exports = new CNTInterface();

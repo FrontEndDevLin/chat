@@ -87,7 +87,7 @@ function UserConf() {
     }
 
     this.SetRecentContacts = (sn, destSN, callback) => {
-        let progress = 0;
+        // let progress = 0;
         UserConfModel.findById(sn, { "_id": 0, "cth": 1 }, (err, result) => {
             if (err) throw err;
             let contactHis = JSON.parse(JSON.stringify(result["cth"]));

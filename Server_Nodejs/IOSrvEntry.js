@@ -25,7 +25,7 @@ function IoSrvEntry(){
                     OnClose(socket);
                 } break;
                 case Mark.IO_EVENT.ERROR: {
-                    var err = data;
+                    let err = data;
                     OnError(socket, err);
                 } break;
             }

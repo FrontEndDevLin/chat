@@ -80,7 +80,7 @@ class PTCParser {
             case Mark.AUTH.LOGIN_REQUEST: {
                 let id = param["token"],
                     pwd = param["pwd"];
-                // User.Insert({id: "13650728004", name: "小弟弟", pwd: "123abc"}, function(err, sn){
+                // User.Insert({id: "13535272749", name: "江江", pwd: "123abc"}, function(err, sn){
                 //     UConf.Insert(sn);
                 // });
                 // return;
